@@ -50,6 +50,10 @@ public class OnPlayerJoin implements Listener {
     }
 
     private String replacePlaceholders(String message, String playerName) {
+        if (message == null) {
+            return null;
+        }
+
         return ChatColor.translateAlternateColorCodes('&', message.replace("%PlayerName%", playerName));
     }
 

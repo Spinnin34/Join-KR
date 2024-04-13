@@ -21,13 +21,23 @@ public class OnPlayerDisconnect implements Listener {
         Player player = event.getPlayer();
         FileConfiguration config = plugin.getConfig();
 
+        String playerName = player.getName();
+
         if (config.getBoolean("DisconnectMessage.Enabled")) {
             String disconnectMessage = config.getString("DisconnectMessage.Message");
             if (disconnectMessage != null && !disconnectMessage.isEmpty()) {
-                disconnectMessage = disconnectMessage.replace("%PlayerName%", player.getName());
+                disconnectMessage = disconnectMessage.replace("%PlayerName%", playerName);
                 event.setQuitMessage(ChatColor.translateAlternateColorCodes('&', disconnectMessage));
             }
         }
+    }
+
+    private String replacePlaceholders(String message, String playerName) {
+        if (message == null) {
+            return null;
+        }
+
+        return ChatColor.translateAlternateColorCodes('&', message.replace("%PlayerName%", playerName));
     }
 }
 

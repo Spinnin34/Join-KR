@@ -5,4 +5,5 @@ api-version: '1.16'
 author: Spinnin34
 commands:
   version:
-    usage: version
+    description: "Para saber la version de el plugin"
+    usage: "/version"

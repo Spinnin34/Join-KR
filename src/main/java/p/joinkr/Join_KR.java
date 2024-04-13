@@ -17,9 +17,6 @@ public final class Join_KR extends JavaPlugin {
         //Used to get the config.yml file from the server folder
         saveDefaultConfig();
 
-        //Saves the configuration file
-        this.saveDefaultConfig();
-
         //Registers the player join event defined in OnPlayerJoin()
         getServer().getPluginManager().registerEvents(new OnPlayerJoin(this), this);
         getServer().getPluginManager().registerEvents(new OnPlayerDisconnect(this), this);
