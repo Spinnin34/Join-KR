@@ -27,9 +27,16 @@ public class OnPlayerJoin implements Listener {
         FileConfiguration config = plugin.getConfig();
 
         String playerName = player.getName();
-
         String title = replacePlaceholders(config.getString("Options.WelcomeMessage.Title"), playerName);
         String subtitle = replacePlaceholders(config.getString("Options.WelcomeMessage.Subtitle"), playerName);
+
+        // Enviar título al jugador
+        sendTitle(player, title, subtitle);
+
+        // Enviar partículas si están habilitadas en la configuración
+        handleParticles(player, config);
+
+        handleSound(player, config);
 
         if (config.getBoolean("WelcomeMessage.Enabled")) {
             String welcomeMessage = config.getString("WelcomeMessage.Message");
@@ -38,15 +45,6 @@ public class OnPlayerJoin implements Listener {
                 Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', welcomeMessage));
             }
         }
-
-        // Enviar título al jugador
-        sendTitle(player, title, subtitle);
-
-        // Enviar partículas si están habilitadas en la configuración
-        spawnParticles(player);
-
-        // Reproducir sonido si está habilitado en la configuración
-        playSound(player);
     }
 
     private String replacePlaceholders(String message, String playerName) {
@@ -64,21 +62,47 @@ public class OnPlayerJoin implements Listener {
         player.sendTitle(title, subtitle, fadeIn, stay, fadeOut);
     }
 
-    private void spawnParticles(Player player) {
-        FileConfiguration config = plugin.getConfig();
+
+
+    private void handleParticles(Player player, FileConfiguration config) {
+
+        HashMap<String, Particle> particleMap = new HashMap<>();
+        particleMap.put("Clouds", Particle.CLOUD);
+        particleMap.put("Hearts", Particle.HEART);
+        particleMap.put("Spark", Particle.FIREWORKS_SPARK);
+        particleMap.put("Soul", Particle.SOUL_FIRE_FLAME);
+
         if (config.getBoolean("Options.Particles.Enabled")) {
-            String particleType = config.getString("Options.Particles.Type");
-            Particle particle = Particle.valueOf(particleType.toUpperCase());
-            player.getWorld().spawnParticle(particle, player.getLocation(), 10);
+
+            String partticleType = config.getString("Options.Particles.Type");
+
+            if (particleMap.containsKey(partticleType)) {
+                player.getWorld().spawnParticle(particleMap.get(partticleType), player.getLocation(), 10);
+            } else {
+                plugin.getLogger().warning("Particle type " + partticleType + " is not valid");
+            }
         }
     }
 
-    private void playSound(Player player) {
-        FileConfiguration config = plugin.getConfig();
-        if (config.getBoolean("Options.PlaySoundOnJoin.Enabled")) {
+    private void handleSound(Player player, FileConfiguration config) {
+        HashMap<String, Sound> soundMap = new HashMap<>();
+        soundMap.put("EXP", Sound.ENTITY_PLAYER_LEVELUP);
+        soundMap.put("Anvil", Sound.BLOCK_ANVIL_HIT);
+        soundMap.put("Trade", Sound.ENTITY_VILLAGER_TRADE);
+        soundMap.put("Firework", Sound.ENTITY_FIREWORK_ROCKET_SHOOT);
+
+        // true o false
+        if (config.getBoolean("Options.PlayerSoundOnJoin.Enabled")) {
             String soundName = config.getString("Options.PlaySoundOnJoin.Sound");
-            Sound sound = Sound.valueOf(soundName.toUpperCase());
-            player.playSound(player.getLocation(), sound, 1.0f, 1.0f);
+
+            if (soundMap.containsKey(soundName)) {
+
+                player.playSound(player.getLocation(), soundMap.get(soundName), 1.0f, 1.0f);
+
+            } else {
+
+                plugin.getLogger().warning("Sound " + soundName + " is not valid.");
+            }
         }
     }
 }
