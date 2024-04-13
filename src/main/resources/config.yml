@@ -1,0 +1,41 @@
+#
+#   ██████╗██████╗ ██╗███╗  ██╗███╗  ██╗██╗███╗  ██╗
+#  ██╔════╝██╔══██╗██║████╗ ██║████╗ ██║██║████╗ ██║
+#  ╚█████╗░██████╔╝██║██╔██╗██║██╔██╗██║██║██╔██╗██║
+#   ╚═══██╗██╔═══╝ ██║██║╚████║██║╚████║██║██║╚████║
+#  ██████╔╝██║     ██║██║ ╚███║██║ ╚███║██║██║ ╚███║
+#  ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚══╝╚═╝  ╚══╝╚═╝╚═╝  ╚══╝
+#
+
+#Si su mensaje utiliza códigos de color personalizados, hágalo verdadero
+HexCodes: false
+
+#Ingrese el texto que se mostrará en la pantalla de título.
+TitleOnJoin: "&6&lWelcome %PlayerName%"
+SubTitleOnJoin: "To Our Server!"
+
+# Configuración del mensaje de bienvenida
+WelcomeMessage:
+  Enabled: true
+  Message: "&7[&a+&7] &f%PlayerName%"
+# Configuración del mensaje de desconexión
+DisconnectMessage:
+  Enabled: true
+  Message: "&7[&c-&7] &f%PlayerName%"
+
+#El tiempo para que el título entre, permanezca y salga
+
+Enter: 3
+Stay: 60
+Exit: 3
+
+#Reproduce un sonido cuando el jugador se une al servidor.
+
+PlaySoundOnJoin: false
+Sound: "EXP"
+
+# (*) Se utiliza para establecer partículas cuando el jugador se une al servidor. (*)
+# Tenga en cuenta que las partículas se generan antes de que el jugador cargue en el mapa.
+
+Particles: false
+ParticleType: "Clouds"

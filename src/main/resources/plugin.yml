@@ -1,0 +1,4 @@
+name: Join-KR
+version: '${project.version}'
+main: p.joinkr.Join_KR
+api-version: '1.16'
