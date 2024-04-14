@@ -11,31 +11,34 @@
 HexCodes: false
 
 #Ingrese el texto que se mostrará en la pantalla de título.
-TitleOnJoin: "&6&lWelcome %PlayerName%"
-SubTitleOnJoin: "To Our Server!"
+WelcomeTitle:
+  Title: "&#FB0000B&#FB1109i&#FC2112e&#FC321Bn&#FD4224v&#FD532De&#FE6336n&#FE743Fi&#FF8448d&#FF9551o %PlayerName%"
+  Subtitle: "&7Developer ©Spinnin34!"
 
 # Configuración del mensaje de bienvenida
 WelcomeMessage:
   Enabled: true
-  Message: "&7[&a+&7] &f%PlayerName%"
+  Message: "&7[&#7BFB54+&7] &f%PlayerName%"
 # Configuración del mensaje de desconexión
 DisconnectMessage:
   Enabled: true
-  Message: "&7[&c-&7] &f%PlayerName%"
+  Message: "&7[&#FB0044-&7] &f%PlayerName%"
 
 #El tiempo para que el título entre, permanezca y salga
 
-Enter: 3
-Stay: 60
-Exit: 3
+TitleFadeIn: 10
+TitleStay: 70
+TitleFadeOut: 20
 
 #Reproduce un sonido cuando el jugador se une al servidor.
 
-PlaySoundOnJoin: false
-Sound: "EXP"
+PlaySoundOnJoin:
+  Enabled: true
+  Sound: "Firework"
 
 # (*) Se utiliza para establecer partículas cuando el jugador se une al servidor. (*)
 # Tenga en cuenta que las partículas se generan antes de que el jugador cargue en el mapa.
 
-Particles: false
-ParticleType: "Clouds"
+Particles:
+  Enabled: true
+  ParticleType: "Spark"

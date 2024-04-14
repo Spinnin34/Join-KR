@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
+import p.joinkr.utils.HexColorConverter;
 import p.joinkr.utils.MessageUtils;
 
 public class VersionCommand implements CommandExecutor {
@@ -20,19 +21,20 @@ public class VersionCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         // Construir el mensaje de varias líneas
-        TextComponent message = new TextComponent(MessageUtils.sendCenteredMessage("§x§B§8§5§7§F§Bᴊ§x§B§9§5§E§F§Bᴏ§x§B§A§6§6§F§Cɪ§x§B§B§6§D§F§Cɴ §x§B§B§7§4§F§Cᴋ§x§B§C§7§C§F§Dᴀ§x§B§D§8§3§F§Dʀ§x§B§E§8§A§F§Dᴍ§x§B§F§9§2§F§Eᴀ§x§C§0§9§9§F§Eɴ§x§C§0§A§0§F§Eᴄ§x§C§1§A§8§F§Fᴏ§x§C§2§A§F§F§Fs\n \n§fHᴀᴢ ᴄʟɪᴄ ᴘᴀʀᴀ ᴀᴄᴄᴇᴅᴇʀ ᴀ ɪɴғᴏʀᴍᴀᴄɪᴏɴ ᴀᴄᴛᴜᴀʟɪᴢᴀᴅᴀ ʏ ɴᴜᴇᴠᴀs ᴀᴄᴛᴜᴀʟɪᴢᴀᴄɪᴏɴᴇs.\n \n§7Developer ©Spinnin34"));
-        message.addExtra("Web Oficial ");
+        TextComponent message = new TextComponent(MessageUtils.sendCenteredMessage(""));
+        message.addExtra(MessageUtils.sendCenteredMessage(HexColorConverter.convertHexCodes("§cᴊᴏɪɴ ᴋᴀʀᴍᴀɴᴄᴏs\n \n")));
+
 
         // Componente de texto para el enlace
-        TextComponent link = new TextComponent("sitio web");
-        link.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://example.com"));
+        TextComponent link = new TextComponent(MessageUtils.sendCenteredMessage("§fʜᴀᴢ ᴄʟɪᴄ ᴘᴀʀᴀ ᴀᴄᴄᴇᴅᴇʀ ᴀ ɪɴғᴏʀᴍᴀᴄɪᴏɴ ᴀᴄᴛᴜᴀʟɪᴢᴀᴅᴀ ʏ ɴᴜᴇᴠᴀs ᴀᴄᴛᴜᴀʟɪᴢᴀᴄɪᴏɴᴇs.\n \n"));
+        link.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://karmancos.42web.io/download/join-kr.html"));
         link.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[]{
                 new TextComponent("¡Haz clic aquí para visitar nuestro sitio web!")
         }));
 
         // Agregar el enlace al mensaje
         message.addExtra(link);
-        message.addExtra(" para obtener más información.");
+        message.addExtra(MessageUtils.sendCenteredMessage("§7Developer ©Spinnin34"));
 
         // Enviar el mensaje al jugador
         player.spigot().sendMessage(message);

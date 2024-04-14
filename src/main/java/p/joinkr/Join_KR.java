@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import p.joinkr.Command.VersionCommand;
 import p.joinkr.events.OnPlayerDisconnect;
 import p.joinkr.events.OnPlayerJoin;
+import p.joinkr.events.OnPlayerJoinMessage;
 
 public final class Join_KR extends JavaPlugin {
 
@@ -20,6 +21,7 @@ public final class Join_KR extends JavaPlugin {
         //Registers the player join event defined in OnPlayerJoin()
         getServer().getPluginManager().registerEvents(new OnPlayerJoin(this), this);
         getServer().getPluginManager().registerEvents(new OnPlayerDisconnect(this), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerJoinMessage(this), this);
 
         //Commandos
         getCommand("version").setExecutor(new VersionCommand());
